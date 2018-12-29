@@ -65,7 +65,8 @@ $config = [
                     'extraPatterns' => [
                         'POST {id}/curtir' => 'curtir', //curtir é a actionCurtir
                         'POST {id}/descurtir' => 'descurtir', //descurtir é a actionDescurtir
-                        'POST pesquisar' => 'pesquisar' //pesquisar é a actionPesquisar
+                        'POST pesquisar' => 'pesquisar', //pesquisar é a actionPesquisar
+                        'GET {id}/comentarios' => 'comentarios' //comentarios é actionComentarios
                     ],
                 ],
             ],

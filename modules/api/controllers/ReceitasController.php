@@ -2,6 +2,7 @@
 
 namespace app\modules\api\controllers;
 
+use app\models\Comentario;
 use yii\filters\auth\HttpBasicAuth;
 use yii;
 use app\models\Curtidas;
@@ -92,5 +93,12 @@ class ReceitasController extends \yii\rest\ActiveController
         }
 
         return [ 'receitas' => $dataProvider->getModels()];
+    }
+
+    public function actionComentarios($id){
+
+        $comentarios = Comentario::find()->where(['id_receita' => $id])->all();
+
+        return ['receitaComentarios'=>$comentarios];
     }
 }

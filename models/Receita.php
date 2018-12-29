@@ -77,11 +77,11 @@ class Receita extends \yii\db\ActiveRecord
         $myJSON = json_encode($myObj);
 
         if ($insert) {
-            $this->FazPublish("INSERT", $myJSON);
-            $this->FazPublish("NEWS", "Uma nova receita foi adicionada!");
+            $this->FazPublish("INSERT", $myJSON); //notificação a nivel da aplicação
+            $this->FazPublish("NEWS", "Uma nova receita foi adicionada!"); //notificação a nivel do utilizador
         }
         else
-            $this->FazPublish("UPDATE", $myJSON);
+            $this->FazPublish("UPDATE", $myJSON); //notificação a nivel da aplicação
     }
 
     public function afterDelete()
