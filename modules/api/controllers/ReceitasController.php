@@ -6,6 +6,7 @@ use yii\filters\auth\HttpBasicAuth;
 use yii;
 use app\models\Curtidas;
 use app\models\Receita;
+use yii\data\ActiveDataProvider;
 
 /**
  * Default controller for the `api` module
@@ -72,5 +73,24 @@ class ReceitasController extends \yii\rest\ActiveController
         }
         $data->save();
         return ['ret'=>'OK'];
+    }
+
+    public function actionPesquisar(){
+        $query = Receita::find();
+
+        $ingredientes = \Yii::$app->request->post('ingredientes');
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $palavras = explode(" ", $ingredientes);
+        foreach ($palavras as $key) {
+            $query->orFilterWhere(
+                ['like', 'descricao_preparo', $key]
+            );
+        }
+
+        return [ 'receitas' => $dataProvider->getModels()];
     }
 }
