@@ -62,9 +62,12 @@ $config = [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/receitas',
                     'pluralize' => false,
+                    'extraPatterns' => [
+                        'POST {id}/curtir' => 'curtir', //curtir é a actionCurtir
+                        'POST {id}/descurtir' => 'descurtir', //descurtir é a actionDescurtir
+                        'POST pesquisar' => 'pesquisar' //pesquisar é a actionPesquisar
+                    ],
                 ],
-
-
             ],
         ],
 
