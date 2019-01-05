@@ -2,8 +2,6 @@
 
 namespace app\models;
 
-use Yii;
-
 
 /**
  * This is the model class for table "receita".
@@ -79,8 +77,7 @@ class Receita extends \yii\db\ActiveRecord
         if ($insert) {
             $this->FazPublish("INSERT", $myJSON); //notificação a nivel da aplicação
             $this->FazPublish("NEWS", "Uma nova receita foi adicionada!"); //notificação a nivel do utilizador
-        }
-        else
+        } else
             $this->FazPublish("UPDATE", $myJSON); //notificação a nivel da aplicação
     }
 
@@ -93,7 +90,7 @@ class Receita extends \yii\db\ActiveRecord
         $myObj->id = $prod_id;
         $myJSON = json_encode($myObj);
 
-        $this->FazPublish("DELETE", $myJSON);
+        $this->FazPublish("DELETE", $myJSON);//notificação a nivel da aplicação
     }
 
     public function FazPublish($canal, $msg)
@@ -105,11 +102,16 @@ class Receita extends \yii\db\ActiveRecord
         $password = ""; //set your password
         $client_id = "phpMQTT-publisher"; //unique!
         $mqtt = new \app\mosquitto\phpMQTT($server, $port, $client_id);
-        if ($mqtt->connect(true, NULL, $username, $password)) {
-            $mqtt->publish($canal, $msg, 0);
-            $mqtt->close();
-        } else {
-            file_put_contents("debug.output", "Time out!");
+        try {
+            if ($mqtt->connect(true, NULL, $username, $password)) {
+                $mqtt->publish($canal, $msg, 0);
+                $mqtt->close();
+            } else {
+
+                file_put_contents("debug.output", "Time out!");
+            }
+        } catch (\Exception $e) { //tratar a exceção lançada quando não consegue conectar ao mosquitto.
+
         }
     }
 
