@@ -92,7 +92,7 @@ class ReceitasController extends \yii\rest\ActiveController
             );
         }
 
-        return [ 'receitas' => $dataProvider->getModels()];
+        return $dataProvider->getModels();
     }
 
     public function actionComentarios($id){

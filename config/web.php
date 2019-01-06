@@ -69,6 +69,14 @@ $config = [
                         'GET {id}/comentarios' => 'comentarios' //comentarios é actionComentarios
                     ],
                 ],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => 'api/users',
+                    'pluralize' => false,
+                    'extraPatterns' => [
+                        'POST login' => 'login', //login é a actionCurtir
+                    ],
+                ],
             ],
         ],
 
