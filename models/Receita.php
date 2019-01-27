@@ -52,7 +52,7 @@ class Receita extends \yii\db\ActiveRecord
             'nome' => 'Nome',
             'tempo_preparo' => 'Tempo Preparo',
             'descricao_preparo' => 'Descricao Preparo',
-            'id_categoria' => 'Id Categoria',
+            'categoria' => 'Categoria',
             'curtir' => 'Curtir',
             'descurtir' => 'Descurtir',
         ];

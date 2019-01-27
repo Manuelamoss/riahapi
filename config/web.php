@@ -66,7 +66,8 @@ $config = [
                         'POST {id}/curtir' => 'curtir', //curtir é a actionCurtir
                         'POST {id}/descurtir' => 'descurtir', //descurtir é a actionDescurtir
                         'POST pesquisar' => 'pesquisar', //pesquisar é a actionPesquisar
-                        'GET {id}/comentarios' => 'comentarios' //comentarios é actionComentarios
+                        'GET {id}/comentarios' => 'comentarios', //comentarios é actionComentarios
+                        'GET {id}/categoria' => 'categoria' //categoria é actionCategoria
                     ],
                 ],
                 [
@@ -74,7 +75,8 @@ $config = [
                     'controller' => 'api/users',
                     'pluralize' => false,
                     'extraPatterns' => [
-                        'POST login' => 'login', //login é a actionCurtir
+                        'POST login' => 'login', //login é a actionLogin
+                        'POST Signup' => 'signup', //login é a actionSignup
                     ],
                 ],
             ],

@@ -95,6 +95,15 @@ class ReceitasController extends \yii\rest\ActiveController
         return $dataProvider->getModels();
     }
 
+    public function actionReceitas() {
+
+    }
+
+    public function actionCategoria($id) {
+        $receita = Receita::find()->where(['id' => $id])->one();
+
+        return ['categoria'=>$receita->categoria->nome];
+    }
     public function actionComentarios($id){
 
         $comentarios = Comentario::find()->where(['id_receita' => $id])->all();
